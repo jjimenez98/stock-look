@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify, make_response
+from flask import Flask, session
+import jwt
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timedelta
+from functools import wraps
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -15,6 +18,29 @@ class Account(db.Model):
 
     def __repr__(self):
         return '<USER %r>' % self.id
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.args.get('token') #http://127.0.0.1:5000/token
+        # token = session.pop('token',none)
+
+        print("token!!!!!!!!",token)
+        
+        if not token:
+            return jsonify({'message' : 'Token is missing!'}), 401
+
+        try:
+            data = jwt.decode(token,app.config['SECRET_KEY'])
+        except:
+            return jsonify({'message' : "Token is invalid"}), 401
+
+        return f(*args, **kwargs)
+    return decorated
+
+def myMethod(token):
+    return jsonify({'token' : token.decode('UTF-8')})
+
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
@@ -31,10 +57,11 @@ def index():
 
             if u.username == task_username:
                 if u.password == task_password:
-                    return redirect('/home')
+                    token = jwt.encode({'user': task_username, 'exp': datetime.utcnow() + timedelta(minutes=30)},app.config['SECRET_KEY'])
+                    myMethod(token)
+                    return redirect(f'/home?token={token.decode()}')
                 else:
-                    print('incorrect password')
-                    pass
+                    return make_response('could not auth',401)
             else:
                 print("Not found")
         else:
@@ -50,6 +77,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/home', methods = ['POST','GET'])
+@token_required
 def home():
     return render_template('home.html')
 
