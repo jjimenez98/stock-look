@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+<html lang="en">
+<style>
+    body{
+         background-color: blanchedalmond;
+    }
+    h1{
+         text-align : center;
+        
+    }
+    #table{
+        border: 4px solid  black;
+        width: 60%;
+        padding: 10px;
+        margin:auto;
+        text-align: center;
+
+    }
+    
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login menu</title>
+</head>
+<body>
+   
+    <div id = 'table' >
+        <h1 class >Welcome</h1>
+        <form action="/" method="POST">
+        <input type = "text" name = "username" id="username"> Username</input> <br>
+        <input type = "text" name = "password" id="password"> Password</input> <br>
+        <input type = "submit">
+        </form>
+
+    </div>
+     <!-- 
+    <div id = 'table' class="row">
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td><br>
+        </tr>
+        {% endfor %}
+
+    </div>
+    !-->
+</body>
+</html>
