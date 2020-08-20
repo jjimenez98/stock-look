@@ -44,9 +44,8 @@ def myMethod(token):
 def index():
     if request.method == 'POST':
         task_username = request.form['username']
-        print(task_username)
+        print('in / login')
         task_password = request.form['password']
-        print(task_password)
         try:
             u = Account.query.filter_by(username=task_username).first()
         except:
@@ -78,6 +77,27 @@ def index():
 @token_required
 def home():
     return render_template('home.html')
+
+@app.route('/signup', methods = ['POST', 'GET'])
+def signup():
+    if request.method == 'POST':
+        if request.form['username']:
+            task_username = request.form['username']
+            print(task_username)
+            task_password = request.form['password']
+            print(task_password)
+            user = Account()
+            user.password = task_password
+            user.username = task_username
+            print("fdsaa)")
+            db.session.add(user)
+            db.session.commit()
+            return redirect('/')
+        else:
+            return render_template('signup.html')
+
+    return render_template('signup.html')
+
 
 
 if __name__ == "__main__":

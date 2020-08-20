@@ -5,68 +5,57 @@
 <html lang="en">
 <style>
     body{
-         background-color: whitesmoke;
+         background-color: #303030;
          padding:100px;
     }
     h1{
          text-align : center;
-         color: whitesmoke;
+         color: red;
          padding: 10px;
         
         
     }
     .row{
-        color whitesmoke;
+        color:red;
         padding: 10px;
 
     }
     ::placeholder{
-        color whitesmoke;
+        color:red;
     }
     
 </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>SIGNUP</title>
 </head>
 <body>
    
     <div class = 'container-fluid' id = 'table' >
         <div  class="row">
             <div class="col">
-
             </div>
              
-                <form action="/" method="POST">
-                    <div style="background-color:#333" class="col">
+                <form action="/signup" method="POST">
+                    <div style="background-color: rgb(30, 35, 40)" class="col">
                         <div class='row'>
-                            <h1>STAR-TREKK</h1>
+                            <h1>SIGNUP</h1>
                         </div>
                         <div class='row'>
-                            <input style = "background-color:#333;"  type= "text" name = "username" id="username" placeholder="Username"></input> <br>
+                            <input style = "background-color: rgba(0, 0, 0, 0);"  type= "text" name = "username" id="username" placeholder="Username"></input> <br>
                         </div>
                         <div class='row'>
-                            <input style = "background-color:#333;" type = "text" name = "password" id="password" placeholder="Password"></input> <br>
+                            <input style = "background-color: rgba(0, 0, 0, 0);" type = "text" name = "password" id="password" placeholder="Password"></input> <br>
                         </div>
                         <div style="margin-left: 0px;" class="row">
-                            <button type="submit" class="btn btn-outline-primary" >LOGIN</button>
-                        </div>
-                        <div style="margin-left: 0px;" class="row">
-                            <button type="submit" class="btn btn-outline-primary" formaction="/signup" >SIGNUP</button>
+                            <button type="submit" class="btn btn-outline-danger" >LOGIN</button>
                         </div>
                     </div>
                 
                 </form>
                 
-            <div   class="col">
-                <div>
-                    <tr>
-                    {%for user in users%}
-                        <td>{{user.username}}</td>
-                    {%endfor%}
-                    </tr>
-                </div>
+            <div class="col">
             
             </div>
         </div>
