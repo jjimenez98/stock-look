@@ -23,13 +23,11 @@ def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = request.args.get('token') #http://127.0.0.1:5000/token
-        # token = session.pop('token',none)
 
         print("token!!!!!!!!",token)
         
         if not token:
             return jsonify({'message' : 'Token is missing!'}), 401
-
         try:
             data = jwt.decode(token,app.config['SECRET_KEY'])
         except:
