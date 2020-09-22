@@ -167,8 +167,8 @@ def stocks():
             img.seek(0)
             plot_url = base64.b64encode(img.getvalue()).decode()
             plot_url = Markup('<img style="padding-top:1rem; object-fit:cover; width:100%;"src="data:image/png;base64,{}">'.format(plot_url))
-            listt = list_tickers()
-            return render_template('stock.html',plot_url=plot_url, listt = listt, open = Open, high = High, low = Low, close = Close, adjclose = adj_Close, ticker= task_ticker)
+            # listt = list_tickers()
+            return render_template('stock.html',plot_url=plot_url, open = Open, high = High, low = Low, close = Close, adjclose = adj_Close, ticker= task_ticker)
     # listt = list_tickers()
     return render_template('stock.html')
 
