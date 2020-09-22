@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block body %}
+<style>
+    ::placeholder{
+        color: #5f788a;
+    }
+</style>
+    <div class = 'container-fluid' id = 'table' >
+        <div  class="row">
+            <div class="col">
+
+            </div><!--end of col-->
+
+                <form action="/login" method="POST">
+                    
+                    <div style="border:1px solid black;" class="col">
+                        <div class='row'>
+                            <h1 style = "background-color:#5f788a; font-size:50px; color:white;">STAR-TREKK</h1>
+                        </div>
+                        <div class='row'>
+                        {% with msj = get_flashed_messages(with_categories=true) %}
+                            {% if msj %}
+                                {% for category, message in msj %}
+                                    <div style="width: 205px; margin: auto; padding-top: 10px;" class= "alert alert-{{ category }}">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        </div>
+
+                        <div style= "width: 205px; margin: auto; padding-top: 10px;"class='row'>
+                            <input style = "text-align: center;" type= "text" name = "username" id="username" placeholder="Username"></input> <br>
+                        </div>
+                        <div style= "width: 205px; margin: auto; padding-top: 10px; " class='row'>
+                            <input style = "text-align: center;" type = "text" name = "password" id="password" placeholder="Password"></input> <br>
+                        </div>
+                        <div style="width: 205px; margin: auto; padding-block: 0px ; padding-top: 10px;" class="row">
+                            <button type="submit" class="btn btn-outline-secondary" >LOGIN</button>
+                        </div>
+                        <div style="width: 205px; margin: auto; padding-block: 0px; padding-top: 10px;" class="row">
+                            <button type="submit" class="btn btn-outline-secondary" formaction="/signup" >SIGNUP</button>
+                        </div>
+                    </div><!--end of col-->
+                
+                </form>
+                
+            <div class="col">
+
+            </div><!-- end of col-->
+        </div><!--end of row-->
+        
+    </div> <!--end of container-fluid-->
+{% endblock body %}

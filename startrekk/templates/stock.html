@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block body %}
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type=text/javascript>
+    $(function() {
+      $('#process_input').bind('click', function() {
+        $.getJSON('/background_process', {
+          proglang: $('input[name="proglang"]').val(),
+        }, function(data) {
+          $("#result").text(data.result);
+        });
+        return false;
+        });
+        
+      
+
+    });
+
+    
+  </script>
+</head>
+
+
+  <main>
+    <div class="container1">
+      <div class="columns">
+
+        <div class="right-navigation">
+
+          <div class = 'searcher'>
+            <div id='title'>
+                <h5>Stock searcher</h5>
+            </div>
+            <div class='ticker-searcher'>
+              <form saction="/stocks" method="POST">
+                <input name = 'ticker' type='text' placeholder="Insert a Ticker"> </input><br>
+                <div style="padding-top:1rem;" class='radio-buttons'>
+                  <input type="radio" value='week' name = 'range' checked>
+                  <label for= 'week'>Week</label><br>
+                  <input type="radio" value='month' name = 'range'>
+                  <label for= 'month'>1 Month</label><br>
+                  <input type="radio" value= '3month' name = 'range'>
+                  <label for= '3month'>3 Months</label><br>
+                  <input type="radio" value ='year' name = 'range'>
+                  <label for= 'year'>Year</label><br>
+                  <button class="btn btn-default"> Submit</button>
+                </div>
+              </form>
+                
+            </div>
+          </div><!--end of searcher-->
+
+          <!-- <div class ='range-list'>
+            <h4 style="padding-top: 1rem;">List of Tickers:</h4>
+            <div style = "width:50%; max-height:200px; overflow:scroll;" class = "list-tickers well">
+              <table>
+                {% for i in listt %}
+                <tr style="font-size:10px;">
+                  <td>{{ i[0] }} </td>
+                 <td>-{{ i[1] }}</td>
+                </tr>
+                
+                {% endfor %}
+              </table>
+            </div>
+          </div> --> <!--end of range-list-->
+          
+        </div><!--end of right-navigation-->
+
+        <div class="main-job ">
+
+            <div style="padding-bottom:1rem; border-top:5px solid black; border-bottom:5px solid black;" class ="data-info">
+              <h5 style="padding-top: 1rem;">Stock Data</h5>
+              <table>
+                <tr>
+                  <td>OPEN:</td>
+                  <td style="padding-left: 1rem;"> {{open}}</td>
+                </tr>
+                <tr>
+                  <td>HIGH:</td>
+                  <td style="padding-left: 1rem;"> {{high}}</td>
+                </tr>
+                <tr>
+                  <td>LOW:</td>
+                  <td style="padding-left: 1rem;"> {{low}}</td>
+                </tr>
+                <tr>
+                  <td>CLOSE:</td>
+                  <td style="padding-left: 1rem;"> {{close}}</td>
+                </tr>
+                <tr>
+                  <td>ADJCLOSE:</td>
+                  <td style="padding-left: 1rem;"> {{adjclose}}</td>
+                </tr>
+              </table>
+              
+            </div>
+            {{ plot_url }}
+          
+
+        </div><!--end of main-job-->
+        
+        <div class="watch-list">
+          <h5>Watch List</h5>
+          <form>
+            <input type=text size=5 name=proglang>
+            <a href='#' id = process_input><button class="btn btn-default">  Add to Watchlist</button></a>
+          </form>
+          <div id=result class='col'>
+            
+          </div>
+          
+
+        </div><!--end of watch-list-->
+
+      </div><!--end of columns-->
+
+    </div> <!--end of container 1-->
+  </main>
+
+
+
+
+{% endblock %}
