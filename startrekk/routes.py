@@ -169,8 +169,8 @@ def stocks():
             listt = list_tickers()
             return render_template('stock.html',plot_url=plot_url, listt = listt, open = Open, high = High, low = Low, close = Close, adjclose = adj_Close, ticker= task_ticker)
     listt = list_tickers()
-    
-    return render_template('stock.html')
+
+    return render_template('login.html')
 
 @app.route('/background_process')
 def background_process():
