@@ -140,8 +140,6 @@ def delete():
 @app.route('/stocks', methods = ['POST','GET'])
 def stocks():
     if request.method == 'POST':
-        # if request.form['Submit']:
-        #     return 'hi'
         if request.form['ticker']:
             t = request.form['range']
             task_ticker = request.form['ticker']
@@ -171,6 +169,7 @@ def stocks():
             listt = list_tickers()
             return render_template('stock.html',plot_url=plot_url, listt = listt, open = Open, high = High, low = Low, close = Close, adjclose = adj_Close, ticker= task_ticker)
     listt = list_tickers()
+    
     return render_template('stock.html')
 
 @app.route('/background_process')
