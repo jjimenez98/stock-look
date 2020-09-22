@@ -1,1 +1,1 @@
-web: gunicorn star-trekk:app
+web: gunicorn run:app
